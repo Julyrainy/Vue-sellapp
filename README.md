@@ -1,6 +1,6 @@
 # sell
 
-> sell some thing
+> 使用Vue框架实现一个高仿外卖App
 
 ## Build Setup
 
