@@ -2,7 +2,6 @@ export const mutations = {
   ADD_FOODSCOUNT (state, food) {
     if (food.count === 1) {
       state.selectFoods.push(food);
-      console.log(state.selectFoods);
     }
   },
   DELETE_FOODSCOUNT (state, food) {
@@ -20,7 +19,9 @@ export const mutations = {
       food.count = 0;
     });
     selectFoods.splice(0, selectFoods.length);
-    console.log(state.selectFoods);
+  },
+  SET_ACTIVEFOOD (state, food) {
+    state.foodDetail = food;
   }
   /*
   SET_ACTIVEBALL (state, ball) {

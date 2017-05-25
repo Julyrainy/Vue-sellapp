@@ -8,7 +8,8 @@ Vue.use(Vuex);
 const state = {
   seller: {},
   goods: {},
-  selectFoods: []
+  selectFoods: [],
+  foodDetail: {}
   // ballActive: {}
 };
 

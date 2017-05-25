@@ -78,7 +78,6 @@
           return this.$store.state.seller;
         },
         foodSelect() {
-          console.log('change food');
           return this.$store.state.selectFoods;
         },
         totalPrice() {

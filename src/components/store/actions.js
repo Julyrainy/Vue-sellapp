@@ -6,8 +6,10 @@ export const actions = {
     commit('DELETE_FOODSCOUNT', food);
   },
   empty_selectfoods ({commit}) {
-    console.log('haha2');
     commit('EMPTY_SELECTFOODS');
+  },
+  set_activefood ({commit}, food) {
+    commit('SET_ACTIVEFOOD', food);
   }
   /*
   set_activeball ({commit}, ball) {

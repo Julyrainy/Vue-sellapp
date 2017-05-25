@@ -55,6 +55,8 @@
             <div class="line"></div>
           </div>
           <div class="bulletin">{{seller.bulletin}}</div>
+
+
         </div>
       </div>
       <div class="detail-close" @click="detailShow = false">
@@ -88,6 +90,7 @@
       }
     },
     created() {
+      // 不在data中写的似乎就是静态变量
       this.classMap = ['decrease', 'discount', 'special', 'guarantee', 'invoice'];
     }
   };
@@ -293,9 +296,8 @@
         width: 32px
         height: 32px
         margin: -64px auto 9px auto
-        clear: both
         font-size: 32px
-        clear: both // 这玩意到底干嘛的
+        // clear: both // 这玩意到底干嘛的
 
   .fade-enter-active
   .fade-leave-active

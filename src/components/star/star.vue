@@ -23,9 +23,9 @@
         starType() {
             return 'star' + this.size;
         },
+        // 将数字评分转化为给星星的数目，四舍五半入，入4.8，最终也是4颗半星
         itemClasses() {
             let items = [];
-            console.log(this.score);
             const score = Math.floor(this.score * 2) / 2;
             const hasDecimal = score % 1 !== 0;
             const integer = Math.floor(score);

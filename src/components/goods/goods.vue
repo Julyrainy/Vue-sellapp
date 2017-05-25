@@ -12,7 +12,7 @@
         <li v-for="item in goods" class="food-list food-list-hook" >
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li v-for="food in item.foods" class="food-item">
+            <li v-for="food in item.foods" class="food-item" @click="showFoodDetail(food, $event)">
               <div class="icon">
                 <img :src="food.icon" width="57" height="57">
               </div>
@@ -37,12 +37,14 @@
       </ul>
     </div>
     <shopcart></shopcart>
+    <food ref="food"></food>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll';
   import shopcart from '../shopcart/shopcart.vue';
+  import food from '../food/food.vue';
   import cartcontrol from '../cartcontrol/cartcontrol.vue';
   const ERR_OK = 0;
   export default {
@@ -56,6 +58,7 @@
       goods() {
           return this.$store.state.goods;
       },
+      // 计算当前食物栏滚动的Y坐标位于哪个类别区间
       currentIndex() {
           for (let i = 0; i < this.listHeight.length; i++) {
               let high = this.listHeight[i + 1];
@@ -68,6 +71,7 @@
       }
     },
     methods: {
+      // 初始化scroll条
       _initScroll() {
         this.menuScroll = new BScroll(this.$refs.menuWrapper, {
           click: true
@@ -82,6 +86,7 @@
           this.scrollY = Math.abs(Math.round(pos.y));
         });
       },
+      // 计算每个大分类在食物栏里所占用的高度区间
       _calculateHeight() {
         let height = 0;
         let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
@@ -91,6 +96,7 @@
           this.listHeight.push(height);
         }
       },
+      // 点击菜单分类栏直接跳转
       currentChange(index, event) {
         if (!event._constructed) {
           return;
@@ -98,6 +104,14 @@
         let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
         let el = foodList[index];
         this.foodsScroll.scrollToElement(el, 300);
+      },
+      // 显示食物详情
+      showFoodDetail(item, event) {
+        if (!event._constructed) {
+          return;
+        }
+        this.$store.dispatch('set_activefood', item);
+        this.$refs.food.show();
       }
     },
     created() {
@@ -115,7 +129,8 @@
     },
     components: {
         shopcart,
-        cartcontrol
+        cartcontrol,
+        food
     }
   };
 </script>
